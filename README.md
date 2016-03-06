@@ -40,6 +40,7 @@ or follow these few steps:
 
 1. Install Heroku toolbelt
 2. Login to Heroku
+
   ```
   heroku login
   Enter your Heroku credentials.
@@ -47,6 +48,7 @@ or follow these few steps:
   Password:
   ...
   ```
+
 3. Deploy
   Create an Heroku app
 
@@ -58,6 +60,7 @@ or follow these few steps:
   ```
 
   Now deploy your code:
+
   ```
   git push heroku master
   Counting objects: 232, done.
