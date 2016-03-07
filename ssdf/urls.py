@@ -41,7 +41,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^oauth2/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'media'}),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
