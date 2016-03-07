@@ -6,7 +6,7 @@
   - Python 3.5
   - [SpatiaLite](https://docs.djangoproject.com/en/1.9/ref/contrib/gis/install/spatialite/#homebrew)
 
-2. Install SpatiaLite
+2. Install SpatiaLite (for local development)
   ```
   $ brew install geos
   $ brew install spatialite-tools
@@ -58,6 +58,9 @@ or follow these few steps:
   http://lit-bastion-5032.herokuapp.com/ | https://git.heroku.com/lit-bastion-5032.git
   Git remote heroku added
   ```
+
+  If you're using dokku instead of heroku, install dokku-apt plugin:
+  `https://github.com/F4-Group/dokku-apt`
 
   Now deploy your code:
 
