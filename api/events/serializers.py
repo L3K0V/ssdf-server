@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from api.events.models import Event, EventPerson, EventTrack, EventTrackLevel, ScheduleItem
+from api.events.models import Event, EventPerson, EventTrack, EventTrackLevel, ScheduleItem, OpeningHours
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -56,3 +56,13 @@ class ScheduleItemSerializer(GeoFeatureModelSerializer):
         geo_field = 'point'
         id_field = False
         fields = ('id', 'type', 'address', 'city', 'state', 'hours')
+
+
+class ScheduleItemHoursSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        s = ScheduleItem.objects.get(pk=self.context.get('schedule_pk'))
+        return OpeningHours.objects.create(schedule_item=s, **validated_data)
+
+    class Meta:
+        model = OpeningHours
+        fields = ('id', 'description', 'from_datetime', 'to_datetime')
