@@ -15,6 +15,7 @@ class GuideItemSerializer(GeoFeatureModelSerializer):
         depth = 1
         model = GuideItem
         geo_field = 'point'
+        auto_bbox = True
         id_field = False
         fields = ('id', 'name', 'description', 'address', 'city', 'state', 'hours')
 
