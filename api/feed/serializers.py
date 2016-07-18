@@ -8,11 +8,12 @@ from api.feed.models import FeedItem
 class FeedItemSerializer(serializers.ModelSerializer):
 
     def create(self, validated_attrs):
+
         devices = GCMDevice.objects.all()
-        devices.send_message("There are new news about the festival")
+        devices.send_message("{}: {}...".format(validated_attrs.get('title')[:64], validated_attrs.get('text')[:64]))
 
         devices = APNSDevice.objects.all()
-        devices.send_message("There are new news about the festival")
+        devices.send_message("{}: {}...".format(validated_attrs.get('title')[:64], validated_attrs.get('text')[:64]))
         return super(FeedItemSerializer, self).create(validated_attrs)
 
     class Meta:
