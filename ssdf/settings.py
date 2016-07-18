@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     'api.feed',
     'api.guide',
     'api.competitions',
-    'api.feedback'
+    'api.feedback',
+    "push_notifications"
 )
 
 REST_FRAMEWORK = {
@@ -59,6 +60,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 15
+}
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+    "GCM_API_KEY": "AIzaSyCdrqtG5bV2Qfi-BvXkAkVzeplCbVIumy0",
+    "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
+    'GCM_POST_URL': 'https://fcm.googleapis.com/fcm/send'
 }
 
 OAUTH2_PROVIDER = {
@@ -139,8 +146,6 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
-GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so.1'
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -168,4 +173,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 try:
     from .local_settings import *
 except ImportError:
+    GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so.1'
     pass

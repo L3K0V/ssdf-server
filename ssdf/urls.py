@@ -6,6 +6,8 @@ from django.conf import settings
 
 from rest_framework_nested import routers
 
+from push_notifications.api.rest_framework import APNSDeviceAuthorizedViewSet, GCMDeviceAuthorizedViewSet
+
 from api.events.views import EventViewSet, EventTrackViewSet, EventTrackLevelViewSet, ScheduleItemViewSet, ScheduleItemHoursViewSet
 from api.guide.views import GuideItemViewSet, GuideItemHoursViewSet
 from api.competitions.views import CompetitionViewSet
@@ -15,6 +17,8 @@ from api.feedback.views import EventTrackLevelRateViewSet, ScheduleItemRateViewS
 router = routers.DefaultRouter()
 router.register(r'events', EventViewSet, base_name='events')
 router.register(r'feed', FeedViewSet, base_name='feeds')
+router.register(r'device/apns', APNSDeviceAuthorizedViewSet)
+router.register(r'device/gcm', GCMDeviceAuthorizedViewSet)
 
 event_router = routers.NestedSimpleRouter(router, r'events', lookup='event')
 event_router.register(r'tracks', EventTrackViewSet, base_name='track')
