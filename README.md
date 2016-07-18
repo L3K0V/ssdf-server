@@ -59,8 +59,23 @@ or follow these few steps:
   Git remote heroku added
   ```
 
+  **DOKKU**
+
   If you're using dokku instead of heroku, install dokku-apt plugin:
   `https://github.com/F4-Group/dokku-apt`
+
+  And then setup GIS extension for Postgres
+
+  ```
+  Use the docker command to pull the image you want:
+
+  (sudo) docker pull mdillon/postgis:latest
+  Then just set your env vars:
+
+  export POSTGRES_IMAGE="mdillon/postgis"
+  export POSTGRES_IMAGE_VERSION="latest"
+  Then you just use the plugin to create a new database.
+  ```
 
   Now deploy your code:
 
