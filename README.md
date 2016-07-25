@@ -61,10 +61,13 @@ or follow these few steps:
 
   **DOKKU**
 
-  If you're using dokku instead of heroku, install dokku-apt plugin:
+  If you're using dokku instead of heroku, install these plugins:
   `https://github.com/F4-Group/dokku-apt`
+  `https://github.com/dokku/dokku-copy-files-to-image`
+  `https://github.com/dokku/dokku-postgres`
 
-  And then setup GIS extension for Postgres
+  Then setup DOKKU_FILES for the apple certificate for push notifications and
+  GIS extension for Postgres
 
   ```
   Use the docker command to pull the image you want:

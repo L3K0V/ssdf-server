@@ -15,7 +15,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = False
 
@@ -54,7 +54,7 @@ REST_FRAMEWORK = {
 }
 
 PUSH_NOTIFICATIONS_SETTINGS = {
-    "GCM_API_KEY": os.getenv("FCM_API_KEY"),
+    "GCM_API_KEY": os.environ["FCM_API_KEY"],
     "APNS_CERTIFICATE": os.path.abspath('apnspush.pem'),
     'GCM_POST_URL': 'https://fcm.googleapis.com/fcm/send'
 }
