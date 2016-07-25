@@ -62,9 +62,10 @@ or follow these few steps:
   **DOKKU**
 
   If you're using dokku instead of heroku, install these plugins:
-  `https://github.com/F4-Group/dokku-apt`
-  `https://github.com/dokku/dokku-copy-files-to-image`
-  `https://github.com/dokku/dokku-postgres`
+
+  - `https://github.com/F4-Group/dokku-apt`
+  - `https://github.com/dokku/dokku-copy-files-to-image`
+  - `https://github.com/dokku/dokku-postgres`
 
   Then setup DOKKU_FILES for the apple certificate for push notifications and
   GIS extension for Postgres
@@ -79,6 +80,10 @@ or follow these few steps:
   export POSTGRES_IMAGE_VERSION="latest"
   Then you just use the plugin to create a new database.
   ```
+
+  Setup environment variables for:
+    - `SECRET_KEY`
+    - `FCM_API_KEY`
 
   Now deploy your code:
 
