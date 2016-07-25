@@ -12,21 +12,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import dj_database_url
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "5!^mw8=5s%^p%%2ef!lrg3msrroif*h=1ttne^&1%d@!-s1(1-"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# Application definition
+DEBUG = False
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -63,8 +54,8 @@ REST_FRAMEWORK = {
 }
 
 PUSH_NOTIFICATIONS_SETTINGS = {
-    "GCM_API_KEY": "AIzaSyCdrqtG5bV2Qfi-BvXkAkVzeplCbVIumy0",
-    "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
+    "GCM_API_KEY": os.getenv("FCM_API_KEY"),
+    "APNS_CERTIFICATE": os.path.abspath('apnspush.pem'),
     'GCM_POST_URL': 'https://fcm.googleapis.com/fcm/send'
 }
 
@@ -106,17 +97,6 @@ TEMPLATES = (
 
 WSGI_APPLICATION = 'ssdf.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 AUTH_PASSWORD_VALIDATORS = (
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -143,6 +123,12 @@ USE_TZ = True
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES = {
+    'default': {
+
+    }
+}
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
