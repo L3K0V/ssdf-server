@@ -9,12 +9,15 @@ class FeedItemSerializer(serializers.ModelSerializer):
 
     def create(self, validated_attrs):
 
-        devices = GCMDevice.objects.all()
-        devices.send_message("{}: {}...".format(validated_attrs.get('title')[:64], validated_attrs.get('text')[:64]))
+        item = super(FeedItemSerializer, self).create(validated_attrs)
 
         devices = APNSDevice.objects.all()
-        devices.send_message("{}: {}...".format(validated_attrs.get('title')[:64], validated_attrs.get('text')[:64]))
-        return super(FeedItemSerializer, self).create(validated_attrs)
+        devices.send_message("{}: {}...".format(item.title[:64], item.text[:64]), extra={"feeditem": item.id})
+
+        devices = GCMDevice.objects.all()
+        devices.send_message("{}: {}...".format(item.title[:64], item.text[:64]), extra={"feeditem": item.id})
+
+        return item
 
     class Meta:
         model = FeedItem
