@@ -5,10 +5,13 @@ from api.events.models import Event, EventPerson, EventTrack, EventTrackLevel, S
 
 
 class EventSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='events-detail')
+
     class Meta:
         depth = 1
         model = Event
-        fields = ('id', 'name', 'description', 'country', 'city', 'from_date', 'to_date', 'tracks')
+        fields = ('url', 'id', 'name', 'description', 'country', 'city', 'from_date', 'to_date', 'tracks')
 
 
 class EventPersonSerializer(serializers.ModelSerializer):

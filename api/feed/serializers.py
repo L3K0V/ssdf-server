@@ -7,6 +7,8 @@ from api.feed.models import FeedItem
 
 class FeedItemSerializer(serializers.ModelSerializer):
 
+    url = serializers.HyperlinkedIdentityField(view_name='feeds-detail')
+
     def create(self, validated_attrs):
 
         item = super(FeedItemSerializer, self).create(validated_attrs)
@@ -21,4 +23,4 @@ class FeedItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FeedItem
-        fields = ('id', 'event', 'title', 'text', 'created_at', 'updated_at', 'cover')
+        fields = ('url', 'id', 'event', 'title', 'text', 'created_at', 'updated_at', 'cover')
